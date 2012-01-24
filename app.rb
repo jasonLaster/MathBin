@@ -1,9 +1,16 @@
 require 'bundler/setup'
 require 'data_mapper'
-require 'dm-sqlite-adapter'
 require 'sinatra'
-require "sinatra/reloader" if development?
-require 'pry' if development?
+
+if production?
+  require 'dm-postgres-adapter'
+end
+
+if development?
+  require 'dm-sqlite-adapter'
+  require "sinatra/reloader"
+  require 'pry'
+end
 
 
 
