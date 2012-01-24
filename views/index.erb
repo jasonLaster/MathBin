@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MathJax TeX Test Page</title>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-  </script>
+  <title>MathBin</title>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="/js/shjs.js" type="text/javascript" charset="utf-8"></script>
@@ -12,8 +10,8 @@
   <link rel="stylesheet" href="/css/shjs_night.css" type="text/css" media="screen" title="no title" charset="utf-8">
     
     <style type="text/css" media="screen">
-      body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0;}
-      
+      body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0; background:none;}
+      form {display:inline;}
       #input {
         padding:15px 0 0 15px;
         width:inherit;
@@ -44,10 +42,15 @@
         display:inline;
         font-size:13px
       }
-      #menu a {
+      #menu a, #menu input {
         line-height:30px;
         color:#333;
         font-size:13px
+      }
+      
+      #menu a:hover, #menu input:hover {
+        color:#2D4FAD;
+        cursor:pointer;
       }
       
       td {
@@ -61,6 +64,9 @@
   <script type="text/javascript" charset="utf-8">
     $('body').ready(function(){
       sh_highlightDocument();
+      renderTex()
+      $('pre').contents().filter(function(){return this.nodeType == 3;}).wrap('<span class="text"/>')
+
       $('#input').focus()
       
       $('#input').css('height', $(window).height()-15)
@@ -77,42 +83,78 @@
     })
     
     $('#reload').live('click', function(){
-      sh_highlightDocument();
       tex = $('#input').text()
-      UpdateMath(tex)
+      formatTex()
     })
+    
+    $('input[type="submit"]').live('click', function(){
+      var tex = $('#input').text();
+      $('input[name="tex"]').val(tex)
+      $('form').submit();
+    })
+    
+    $(document).live('keyup', function(){
+    })
+    
+    function renderTex() {
+      $('#output').html($('#input').text())
+      var math = document.getElementById("output");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+    }
+    
+    
+    // clean up input text
+    // 1. replace tex, 2. add spans for text elements
+    function formatTex(){
+      s = window.getSelection();
+      caret_pos = s.anchorOffset + $(s.anchorNode.parentNode).prevUntil().text().length
+      tex = $('#input').text()
+      
+      $('#input').text(tex)
+      sh_highlightDocument();
+      $('pre').contents().filter(function(){return this.nodeType == 3;}).wrap('<span class="text"/>')
+      renderTex()
+      
+      // calculate new caret position
+      // span_lengths = $.map($('pre span'), function(e,i){return $(e).text().length})
+      // var sum=0,i=0;
+      // while(sum < caret_pos) {sum+= span_lengths[i++]}
+      // sum -= span_lengths[--i];
+      // 
+      // el = $('pre').children()[i]
+      // node_offset = caret_pos - sum
+      // 
+      // range = document.createRange();
+      // sel = window.getSelection();
+      // range.collapse(true)
+      // range.setStart($('pre').children()[i], 2)
+      // sel.removeAllRanges();
+      // sel.addRange(range);
+      // $('#input').focus()
+      // 
+      
+    }
+        
   </script>
   
   
-  <script>
-    (function () {                    
-      var QUEUE = MathJax.Hub.queue;  
-      var math = null;                
 
-      QUEUE.Push(function () {
-        math = MathJax.Hub.getAllJax("output")[0];
-      });
-
-      window.UpdateMath = function (TeX) {
-        QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
-      }
-    })();
-  </script>
 
   <div id="menu">
-    <a href="#save">save</a> - <a href="#edit">edit</a>
-    &nbsp; <h1>texbin</h1>
+    <form name="input" action="save" method="post">
+      <input name="tex" type="hidden" value=""/>
+      <input type="submit" value="Save" />
+    </form>
+    &nbsp; <h1>MathBin</h1>
   </div>
   <div id="reload">reload</div>
   <table>
     <tr>
       <td id="left" width="50%">
-        <pre id="input" class="sh_latex" contenteditable="true">f(x)=\sum_{n=1}^{10}{x}</pre>
+        <pre id="input" class="sh_latex" contenteditable="true"><%= @tex.blob unless @tex.nil? %></pre>
       </td>
       <td id="right" width="50%">
-        <div id="output">
-          ${}$
-        </div>
+        <div id="output"></div>
       </td>
     </tr>
 </table>
