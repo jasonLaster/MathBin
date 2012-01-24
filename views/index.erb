@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MathJax TeX Test Page</title>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/shjs.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/sh_latex.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="/css/shjs_night.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    
+    <style type="text/css" media="screen">
+      body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0;}
+      
+      #input {
+        padding:15px 0 0 15px;
+        width:inherit;
+        overflow:scroll;
+      }
+      
+      #output {
+        padding:15px 0 0 15px;      
+        overflow:scroll;
+      }
+      
+      #reload {
+        width:70px; height:24px; background-color:#ee5949;
+        text-align:center; line-height:24px; color:#e7ee5c; font-family:'Helvetica';
+        position:absolute; top:4px; right:4px; z-index:10;
+      }
+      
+      #reload:hover {cursor:pointer}
+      
+      #menu {
+        position:absolute; bottom:0px; right:0px; z-index:10;
+        width:150px; height:30px; padding-left:10px;
+        background:rgba(200,200,200,0.5);
+        color:#333;
+      }
+      
+      h1 {
+        display:inline;
+        font-size:13px
+      }
+      #menu a {
+        line-height:30px;
+        color:#333;
+        font-size:13px
+      }
+      
+      td {
+        position:relative;
+      }
+      
+    </style>
+    
+</head>
+<body>
+  <script type="text/javascript" charset="utf-8">
+    $('body').ready(function(){
+      sh_highlightDocument();
+      $('#input').focus()
+      
+      $('#input').css('height', $(window).height()-15)
+      $('#output').css('height', $(window).height()-15)
+      $('table').css('width', $(window).width())
+      $('table td').css('width', $(window).width()/2-1)
+    })
+    
+    $('window').resize(function(){
+      $('#input').css('height', $(window).height())
+      $('#output').css('height', $(window).height())
+      $('table').css('width', $(window).width())
+      $('table td').css('width', $(window).width()/2-1)
+    })
+    
+    $('#reload').live('click', function(){
+      sh_highlightDocument();
+      tex = $('#input').text()
+      UpdateMath(tex)
+    })
+  </script>
+  
+  
+  <script>
+    (function () {                    
+      var QUEUE = MathJax.Hub.queue;  
+      var math = null;                
+
+      QUEUE.Push(function () {
+        math = MathJax.Hub.getAllJax("output")[0];
+      });
+
+      window.UpdateMath = function (TeX) {
+        QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
+      }
+    })();
+  </script>
+
+  <div id="menu">
+    <a href="#save">save</a> - <a href="#edit">edit</a>
+    &nbsp; <h1>texbin</h1>
+  </div>
+  <div id="reload">reload</div>
+  <table>
+    <tr>
+      <td id="left" width="50%">
+        <pre id="input" class="sh_latex" contenteditable="true">f(x)=\sum_{n=1}^{10}{x}</pre>
+      </td>
+      <td id="right" width="50%">
+        <div id="output">
+          ${}$
+        </div>
+      </td>
+    </tr>
+</table>
+
+
+<!--   
+<div contenteditable="true">
+</div>
+
+ -->
+</body>
+</html>
+
