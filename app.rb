@@ -15,7 +15,7 @@ end
 
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup( :default, "sqlite3://#{Dir.pwd}/test3.db" )
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 
 class Tex
   include DataMapper::Resource
