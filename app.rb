@@ -30,7 +30,7 @@ get '/' do
   erb :index
 end
 
-post '/save' do
+post %r{save} do
   @tex = Tex.create(:blob => params[:tex], :bid => create_id)
   redirect to("/#{@tex.bid}")
 end
