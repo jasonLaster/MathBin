@@ -11,8 +11,6 @@ http://mathbin.heroku.com/IxHSNdu/edit
 
 
 ## Todos
-+ try and find away to have realtime syntax highlighting
-  + maintain caret position
-  + maintain linebreaks
-+ embed form
-+ edit saved blobs
++ add embed form
++ add latex cheatsheet
++ add cool bottom-bar about info
