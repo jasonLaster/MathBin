@@ -1,26 +1,5 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>MathJax TeX Test Page</title>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-  </script>
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-
-    
-</head>
-<body>
-  <script type="text/javascript" charset="utf-8">
-    $('body').ready(function(){
-      sh_highlightDocument();
-    })
-  </script>
-  
-<div>
-  <%= @tex.blob %>
-</div>
-
-</body>
+  <body>
+    <script src="<%= @url %>"></script>
+  </body>
 </html>
-

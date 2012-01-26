@@ -26,6 +26,17 @@ DataMapper.auto_upgrade!
 
 
 #  ROUTES
+get '/embed/:bid' do
+  id = params[:bid]
+  @tex = Tex.get(id)
+  content_type 'text/javascript'
+  html = erb(:embed).inspect
+  
+  puts "\n"*20 + html
+  return "document.write(#{html})"
+end
+
+
 get '/' do
   erb :index
 end
@@ -39,6 +50,7 @@ end
 get '/:bid' do
   id = params[:bid]
   @tex = Tex.get(id)
+  @url = embed_url(@tex)
   erb :raw
 end
 
@@ -48,6 +60,11 @@ get '/:bid/edit' do
 end
 
 
+def embed_url(tex)
+  return "" if tex.nil?
+  domain = development? ? "localhost:4555" : "mathbin.heroku.com"
+  "http://#{domain}/embed/#{tex.bid}"
+end
 
 # HELPER METHODS
 private

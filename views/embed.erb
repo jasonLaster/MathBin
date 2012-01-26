@@ -1,0 +1,12 @@
+<div id="MathBin" onload="sh_highlightDocument()">
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+  <link rel="stylesheet" href="http://mathbin.heroku.com/css/embed.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  
+  <div id="MathBinTex">
+    <%= @tex.blob unless @tex.nil? %>
+  </div>
+  <div id="MathBinCredit">
+    MathBin <a href="http://mathbin.heroku.com/<%=@tex.bid unless @tex.nil? %>/edit"><%=@tex.bid unless @tex.nil? %></a> linked directly from <b>MathBin</b>.
+  </div>
+</div>
