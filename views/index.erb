@@ -17,16 +17,13 @@
 
   <!--  GENERAL -->
   <link rel="stylesheet" href="/css/editor.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    
-</head>
-<body>
+  <script src="/js/editor.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
-  
     $('body').ready(function(){
-      
+
       var tex = <%= (@tex.nil? ? "": @tex.blob).inspect %>
       resize_elements();
-      
+
       // ACE SETTINGS
       window.editor = ace.edit("input");
       window.editor.setTheme("ace/theme/solarized_dark");
@@ -36,47 +33,13 @@
       window.editor.setHighlightActiveLine(false);
       session.setUseWrapMode(true);
       window.editor.setShowPrintMargin(false);
-      
+
       session.setValue(tex);
       render_tex();
     })
-
-    
-    $('window').resize(function(){
-      resize_elements()
-    })
-        
-    $('input[type="submit"]').live('click', function(){
-      var tex = get_tex();
-      $('input[name="tex"]').val(tex)
-      $('form').submit();
-    })
-    
-    $(document).live('keyup', function(){
-      render_tex();
-    })
-    
-    function get_tex(){
-      return window.editor.getSession().getValue();
-    }
-    
-    function render_tex() {
-      var tex = get_tex();
-      $('#output').html(tex)
-      var math = document.getElementById("output");
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
-    }
-
-    function resize_elements(){
-      $('#input').css('height', $(window).height()-15)
-      $('#output').css('height', $(window).height()-15)
-      $('table').css('width', $(window).width())
-      $('table td').css('width', $(window).width()/2-1)
-    }
-          
   </script>
-  
-
+</head>
+<body>
   <div id="menu">
     <div class="wrapper">
       <div id="embed-popup">
@@ -91,6 +54,7 @@
       &nbsp; <h1>MathBin</h1>
     </div>
   </div>
+  
   <table>
     <tr>
       <td id="left" width="50%">        
