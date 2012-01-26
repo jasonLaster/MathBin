@@ -78,12 +78,18 @@
   
 
   <div id="menu">
-    <a href="#">Embed</a> &nbsp;
-    <form name="input" action="save" method="post">
-      <input name="tex" type="hidden" value=""/>
-      <input type="submit" value="Save" />
-    </form>
-    &nbsp; <h1>MathBin</h1>
+    <div class="wrapper">
+      <div id="embed-popup">
+        &lt;script src=&quot;<%= @embed_url %>&quot;&gt;&lt;/script&gt; 
+      </div>
+      <a href="#">Embed</a> &nbsp;
+      <form name="input" action="save" method="post">
+        <input name="tex" type="hidden" value=""/>
+        <input name="bid" type="hidden" value="<%= @bid %>"/>
+        <input type="submit" value="Save" />
+      </form>
+      &nbsp; <h1>MathBin</h1>
+    </div>
   </div>
   <table>
     <tr>

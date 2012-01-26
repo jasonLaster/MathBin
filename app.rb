@@ -25,45 +25,60 @@ end
 DataMapper.auto_upgrade!
 
 
-#  ROUTES
-get '/embed/:bid' do
-  id = params[:bid]
-  @tex = Tex.get(id)
-  content_type 'text/javascript'
-  html = erb(:embed).inspect
-  
-  puts "\n"*20 + html
-  return "document.write(#{html})"
-end
-
+#  ROUTES: (/, /:bid, /embed/:bid, /raw/:bid)
 
 get '/' do
+  bid = create_id
+  redirect to("/#{bid}")
+end
+
+get '/:bid' do
+  @bid = params[:bid]
+  @tex = Tex.get(@bid)
+  @embed_url = embed_url(@tex || @bid) 
   erb :index
 end
 
-post %r{save} do
-  @tex = Tex.create(:blob => params[:tex], :bid => create_id)
-  redirect to("/#{@tex.bid}")
+get '/embed/:bid' do
+  id = params[:bid]
+  @tex = Tex.get(id)
+
+  content_type 'text/javascript'
+  html = erb(:embed).inspect
+  return "document.write(#{html})"
 end
 
-
-get '/:bid' do
+get '/raw/:bid' do
   id = params[:bid]
   @tex = Tex.get(id)
   @url = embed_url(@tex)
   erb :raw
 end
 
-get '/:bid/edit' do
-  @tex = Tex.get(params[:bid])
-  erb :index
+post %r{save} do
+  if @tex = Tex.get(params[:bid])
+    @tex.blob = params[:tex]
+    @tex.save
+  else
+    @tex = Tex.create(:blob => params[:tex], :bid => params[:bid])
+  end
+  redirect to("/raw/#{@tex.bid}")
 end
 
 
-def embed_url(tex)
-  return "" if tex.nil?
-  domain = development? ? "localhost:4555" : "mathbin.heroku.com"
-  "http://#{domain}/embed/#{tex.bid}"
+helpers do
+  def domain
+    development? ? "http://localhost:4555" : "http://mathbin.heroku.com"
+  end
+end
+
+def embed_url(e)
+  domain = development? ? "http://localhost:4555" : "http://mathbin.heroku.com"
+    
+  if e.nil? then ""
+  elsif e.respond_to?(:bid) then "#{domain}/embed/#{e.bid}"
+  else "#{domain}/embed/#{e}"
+  end
 end
 
 # HELPER METHODS

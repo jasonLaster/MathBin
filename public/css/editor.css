@@ -1,7 +1,7 @@
 body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0; background:none;}
 form {display:inline;}
-#editor {
-}
+#editor {}
+.wrapper {position:relative;}
 #input {  
   position: absolute;
   top:0; right:0; bottom:0; left:0;
@@ -22,22 +22,28 @@ form {display:inline;}
   color:#333;
 }
 
-h1 {
-  display:inline;
-  font-size:13px
-}
-#menu a, #menu input {
-  text-decoration:none;
-  font-family:'Helvetica';
-  line-height:30px;
-  color:#333;
-  font-size:13px
-}
+  h1 {
+    display:inline;
+    font-size:13px
+  }
+  #menu a, #menu input {
+    text-decoration:none;
+    font-family:'Helvetica';
+    line-height:30px;
+    color:#333;
+    font-size:13px
+  }
 
-#menu a:hover, #menu input:hover {
-  color:#2D4FAD;
-  cursor:pointer;
-}
+  #menu a:hover, #menu input:hover {
+    color:#2D4FAD;
+    cursor:pointer;
+  }
+
+  #embed-popup {
+    position:absolute;
+    bottom:40px; left:-300px;
+    background-color:yellow;
+  }
 
 td {
   position:relative;

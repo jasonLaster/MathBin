@@ -7,6 +7,6 @@
     <%= @tex.blob unless @tex.nil? %>
   </div>
   <div id="MathBinCredit">
-    MathBin <a href="http://mathbin.heroku.com/<%=@tex.bid unless @tex.nil? %>/edit"><%=@tex.bid unless @tex.nil? %></a> linked directly from <b>MathBin</b>.
+    MathBin <a href="<%= domain %>/<%=@tex.bid unless @tex.nil? %>"><%=@tex.bid unless @tex.nil? %></a> linked directly from <b>MathBin</b>.
   </div>
 </div>
