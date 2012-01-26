@@ -17,7 +17,15 @@ $(document).live('keyup', function(){
 })
 
 function get_tex(){
-  return window.editor.getSession().getValue();
+  return window.chrome ? window.editor.getSession().getValue() : $('#input').text()
+}
+
+function set_tex(tex) {
+  if(window.chrome) {
+    window.ace_session.setValue(tex);
+  } else {
+    $('#input').text(tex)
+  }
 }
 
 function render_tex() {

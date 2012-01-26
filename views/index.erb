@@ -22,19 +22,21 @@
     $('body').ready(function(){
 
       var tex = <%= (@tex.nil? ? "": @tex.blob).inspect %>
+      window.chrome = navigator.userAgent.match(/Chrome/)
       resize_elements();
 
       // ACE SETTINGS
-      window.editor = ace.edit("input");
-      window.editor.setTheme("ace/theme/solarized_dark");
-      var JavaScriptMode = ace.require("ace/mode/latex").Mode;
-      var session = editor.getSession();
-      session.setMode(new JavaScriptMode());
-      window.editor.setHighlightActiveLine(false);
-      session.setUseWrapMode(true);
-      window.editor.setShowPrintMargin(false);
-
-      session.setValue(tex);
+      if(window.chrome) {
+        window.editor = ace.edit("input");
+        window.editor.setTheme("ace/theme/solarized_dark");
+        var JavaScriptMode = ace.require("ace/mode/latex").Mode;
+        window.ace_session = editor.getSession();
+        window.ace_session.setMode(new JavaScriptMode());
+        window.editor.setHighlightActiveLine(false);
+        window.ace_session.setUseWrapMode(true);
+        window.editor.setShowPrintMargin(false);
+      }
+      set_tex(tex)
       render_tex();
     })
   </script>
