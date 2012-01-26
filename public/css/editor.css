@@ -1,0 +1,44 @@
+body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0; background:none;}
+form {display:inline;}
+#editor {
+}
+#input {  
+  position: absolute;
+  top:0; right:0; bottom:0; left:0;
+}
+
+#output {
+  padding:15px 0 0 15px;      
+  overflow:scroll;
+}
+
+
+#reload:hover {cursor:pointer}
+
+#menu {
+  position:absolute; bottom:0px; right:0px; z-index:10;
+  height:30px; padding-left:10px;
+  background:rgba(200,200,200,0.5);
+  color:#333;
+}
+
+h1 {
+  display:inline;
+  font-size:13px
+}
+#menu a, #menu input {
+  text-decoration:none;
+  font-family:'Helvetica';
+  line-height:30px;
+  color:#333;
+  font-size:13px
+}
+
+#menu a:hover, #menu input:hover {
+  color:#2D4FAD;
+  cursor:pointer;
+}
+
+td {
+  position:relative;
+}

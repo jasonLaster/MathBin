@@ -15,57 +15,8 @@
   <script src="/js/ace/theme-solarized_dark-noconflict.js" type="text/javascript" charset="utf-8"></script>
   <script src="/js/ace/mode-latex-noconflict.js" type="text/javascript" charset="utf-8"></script>
 
-    
-    <style type="text/css" media="screen">
-      body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0; background:none;}
-      form {display:inline;}
-      #editor {
-      }
-      #input {  
-        position: absolute;
-        top:0; right:0; bottom:0; left:0;
-      }
-      
-      #output {
-        padding:15px 0 0 15px;      
-        overflow:scroll;
-      }
-      
-      #reload {
-        width:70px; height:24px; background-color:#ee5949;
-        text-align:center; line-height:24px; color:#e7ee5c; font-family:'Helvetica';
-        position:absolute; top:4px; right:4px; z-index:10;
-      }
-      
-      #reload:hover {cursor:pointer}
-      
-      #menu {
-        position:absolute; bottom:0px; right:0px; z-index:10;
-        width:150px; height:30px; padding-left:10px;
-        background:rgba(200,200,200,0.5);
-        color:#333;
-      }
-      
-      h1 {
-        display:inline;
-        font-size:13px
-      }
-      #menu a, #menu input {
-        line-height:30px;
-        color:#333;
-        font-size:13px
-      }
-      
-      #menu a:hover, #menu input:hover {
-        color:#2D4FAD;
-        cursor:pointer;
-      }
-      
-      td {
-        position:relative;
-      }
-      
-    </style>
+  <!--  GENERAL -->
+  <link rel="stylesheet" href="/css/editor.css" type="text/css" media="screen" title="no title" charset="utf-8">
     
 </head>
 <body>
@@ -127,6 +78,7 @@
   
 
   <div id="menu">
+    <a href="#">Embed</a> &nbsp;
     <form name="input" action="save" method="post">
       <input name="tex" type="hidden" value=""/>
       <input type="submit" value="Save" />
