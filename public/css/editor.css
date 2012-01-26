@@ -19,7 +19,6 @@ table {margin-top:30px}
 
 #menu {
   position:absolute; top:0px; right:0px; left:0; z-index:10; height:30px;
-  padding-left:15px;
   background:#9C9C9C;
   background-color:whitesmoke;
   border-bottom:1px solid #93a1a1;
@@ -37,13 +36,13 @@ table {margin-top:30px}
     font-family:'helvetica';
     display:inline;
     font-size:13px;
-    color:#586e75;
-    line-height:30px;
+    color:#eee8d5;
+    line-height:20px;
   }
   #menu a, #menu input {
     text-decoration:none;
     font-family:'Helvetica';
-    line-height:30px;
+    line-height:20px;
     color:#002b36;
     font-size:13px
   }
@@ -51,6 +50,22 @@ table {margin-top:30px}
   #menu a:hover, #menu input:hover {
     color:#002b36;
     cursor:pointer;
+  }
+  
+  #flag {
+    float:left; height:20px; margin-top:5px;
+    padding:0px 5px 0 10px;
+    background:#dc322f;
+  }
+  
+  .arrow-right {
+    float:left;
+    margin-top:5px;
+  	width: 0;
+  	height: 0;
+  	border-top: 10px solid transparent;
+  	border-bottom: 10px solid transparent;
+  	border-left: 10px solid #dc322f;
   }
 
   #embed-popup {
