@@ -1,7 +1,3 @@
-
-
-
-
 $('window').resize(function(){
   resize_elements()
 })
@@ -10,6 +6,10 @@ $('input[type="submit"]').live('click', function(){
   var tex = get_tex();
   $('input[name="tex"]').val(tex)
   $('form').submit();
+})
+
+$('#embed').live('click', function(){
+  $('#embed-popup').toggle();
 })
 
 $(document).live('keyup', function(){
@@ -28,8 +28,8 @@ function render_tex() {
 }
 
 function resize_elements(){
-  $('#input').css('height', $(window).height()-15)
-  $('#output').css('height', $(window).height()-15)
-  $('table').css('width', $(window).width())
-  $('table td').css('width', $(window).width()/2-1)
+  var height = $(window).height() - 15 -30
+  var width = $(window).width()/2-1
+  $('#output').css('height', height)
+  $('table td').css('width', width)
 }
