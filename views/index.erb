@@ -72,15 +72,22 @@
   <script type="text/javascript" charset="utf-8">
   
     $('body').ready(function(){
+      
+      var tex = <%= (@tex.nil? ? "": @tex.blob).inspect %>
       resize_elements();
-      render_tex();
-      var editor = ace.edit("input");
-      editor.setTheme("ace/theme/solarized_dark");
+      
+      // ACE SETTINGS
+      window.editor = ace.edit("input");
+      window.editor.setTheme("ace/theme/solarized_dark");
       var JavaScriptMode = ace.require("ace/mode/latex").Mode;
-      editor.getSession().setMode(new JavaScriptMode());
-      editor.setHighlightActiveLine(false);
-      editor.getSession().setUseWrapMode(true);
-      editor.setShowPrintMargin(false);
+      var session = editor.getSession();
+      session.setMode(new JavaScriptMode());
+      window.editor.setHighlightActiveLine(false);
+      session.setUseWrapMode(true);
+      window.editor.setShowPrintMargin(false);
+      
+      session.setValue(tex);
+      render_tex();
     })
 
     
@@ -99,7 +106,7 @@
     })
     
     function get_tex(){
-      return $('.ace_scroller').text();
+      return window.editor.getSession().getValue();
     }
     
     function render_tex() {
