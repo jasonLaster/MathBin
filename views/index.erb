@@ -2,20 +2,28 @@
 <html>
 <head>
   <title>MathBin</title>
+
+  <!-- MATHJAX -->
   <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+
+  <!-- JQUERY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/js/shjs.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/js/sh_latex.js" type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" href="/css/shjs_night.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+  <!-- ACE -->
+  <script src="/js/ace/ace-noconflict.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ace/theme-solarized_dark-noconflict.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ace/mode-latex-noconflict.js" type="text/javascript" charset="utf-8"></script>
+
     
     <style type="text/css" media="screen">
       body, div, span, h1, h2, h3, h4, h5, ul, li, input, pre, table, td, tr, tbody {margin:0; padding:0; border:none; border-spacing:0; background:none;}
       form {display:inline;}
-      #input {
-        padding:15px 0 0 15px;
-        width:inherit;
-        overflow:scroll;
+      #editor {
+      }
+      #input {  
+        position: absolute;
+        top:0; right:0; bottom:0; left:0;
       }
       
       #output {
@@ -62,83 +70,54 @@
 </head>
 <body>
   <script type="text/javascript" charset="utf-8">
+  
     $('body').ready(function(){
-      sh_highlightDocument();
-      renderTex()
-      $('pre').contents().filter(function(){return this.nodeType == 3;}).wrap('<span class="text"/>')
-
-      $('#input').focus()
-      
-      $('#input').css('height', $(window).height()-15)
-      $('#output').css('height', $(window).height()-15)
-      $('table').css('width', $(window).width())
-      $('table td').css('width', $(window).width()/2-1)
+      resize_elements();
+      render_tex();
+      var editor = ace.edit("input");
+      editor.setTheme("ace/theme/solarized_dark");
+      var JavaScriptMode = ace.require("ace/mode/latex").Mode;
+      editor.getSession().setMode(new JavaScriptMode());
+      editor.setHighlightActiveLine(false);
+      editor.getSession().setUseWrapMode(true);
+      editor.setShowPrintMargin(false);
     })
+
     
     $('window').resize(function(){
-      $('#input').css('height', $(window).height())
-      $('#output').css('height', $(window).height())
-      $('table').css('width', $(window).width())
-      $('table td').css('width', $(window).width()/2-1)
+      resize_elements()
     })
-    
-    $('#reload').live('click', function(){
-      tex = $('#input').text()
-      formatTex()
-    })
-    
+        
     $('input[type="submit"]').live('click', function(){
-      var tex = $('#input').text();
+      var tex = get_tex();
       $('input[name="tex"]').val(tex)
       $('form').submit();
     })
     
     $(document).live('keyup', function(){
+      render_tex();
     })
     
-    function renderTex() {
-      $('#output').html($('#input').text())
+    function get_tex(){
+      return $('.ace_scroller').text();
+    }
+    
+    function render_tex() {
+      var tex = get_tex();
+      $('#output').html(tex)
       var math = document.getElementById("output");
       MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
     }
-    
-    
-    // clean up input text
-    // 1. replace tex, 2. add spans for text elements
-    function formatTex(){
-      s = window.getSelection();
-      caret_pos = s.anchorOffset + $(s.anchorNode.parentNode).prevUntil().text().length
-      tex = $('#input').text()
-      
-      $('#input').text(tex)
-      sh_highlightDocument();
-      $('pre').contents().filter(function(){return this.nodeType == 3;}).wrap('<span class="text"/>')
-      renderTex()
-      
-      // calculate new caret position
-      // span_lengths = $.map($('pre span'), function(e,i){return $(e).text().length})
-      // var sum=0,i=0;
-      // while(sum < caret_pos) {sum+= span_lengths[i++]}
-      // sum -= span_lengths[--i];
-      // 
-      // el = $('pre').children()[i]
-      // node_offset = caret_pos - sum
-      // 
-      // range = document.createRange();
-      // sel = window.getSelection();
-      // range.collapse(true)
-      // range.setStart($('pre').children()[i], 2)
-      // sel.removeAllRanges();
-      // sel.addRange(range);
-      // $('#input').focus()
-      // 
-      
+
+    function resize_elements(){
+      $('#input').css('height', $(window).height()-15)
+      $('#output').css('height', $(window).height()-15)
+      $('table').css('width', $(window).width())
+      $('table td').css('width', $(window).width()/2-1)
     }
-        
+          
   </script>
   
-  
-
 
   <div id="menu">
     <form name="input" action="save" method="post">
@@ -147,11 +126,10 @@
     </form>
     &nbsp; <h1>MathBin</h1>
   </div>
-  <div id="reload">reload</div>
   <table>
     <tr>
-      <td id="left" width="50%">
-        <pre id="input" class="sh_latex" contenteditable="true"><%= @tex.blob unless @tex.nil? %></pre>
+      <td id="left" width="50%">        
+        <pre id="input"></pre>
       </td>
       <td id="right" width="50%">
         <div id="output"></div>
