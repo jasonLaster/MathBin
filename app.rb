@@ -48,7 +48,7 @@ get '/embed/:bid' do
   return "document.write(#{html})"
 end
 
-get '/raw/:bid' do
+get '/tex/:bid' do
   id = params[:bid]
   @tex = Tex.get(id)
   @url = embed_url(@tex)

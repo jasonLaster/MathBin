@@ -50,8 +50,13 @@
       </div>
       <div class="arrow-right"></div>
 
-      <div style="float:right; padding-right:15px; line-height:30px">
-        <a href="#">New</a> &nbsp;
+      <div class="buttons">
+        <a class="info" href="/about">About</a>&nbsp;
+        <a class="info" href="/examples">Examples</a>&nbsp;
+        <a href="/">New</a> &nbsp;
+        <% unless @tex.nil? %>
+        <a href="/tex/<%= @tex.bid %>">Tex</a>&nbsp;
+        <% end %>
         <a id="embed" href="#">Embed</a> &nbsp;
         <div id="embed-popup"><div class="script_tag">
           &lt;script src=&quot;<%= @embed_url %>&quot;&gt;&lt;/script&gt; </div>

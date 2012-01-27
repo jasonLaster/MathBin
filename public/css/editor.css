@@ -32,12 +32,28 @@ table {margin-top:30px}
     color:#eee8d5;
     line-height:20px;
   }
-  #menu a, #menu input {
+  #menu .buttons {
+    float:right; 
+/*    padding-right:5px; border-right:5px solid #658289;*/
+    margin-right:5px;
+    line-height:30px;
+  }
+  #menu .buttons a, #menu .buttons input {
     text-decoration:none;
     font-family:'Helvetica';
     line-height:20px;
     color:#002b36;
-    font-size:13px
+    font-size:13px;
+    font-weight:bold;
+  }
+  
+  #menu .buttons a:hover, #menu .buttons input:hover {
+    text-decoration:underline;
+  }
+  
+  #menu .buttons a.info {
+    font-weight:normal;
+    
   }
 
   #menu a:hover, #menu input:hover {
