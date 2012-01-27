@@ -55,14 +55,13 @@ get '/raw/:bid' do
   erb :raw
 end
 
-post %r{save} do
-  if @tex = Tex.get(params[:bid])
-    @tex.blob = params[:tex]
-    @tex.save
-  else
-    @tex = Tex.create(:blob => params[:tex], :bid => params[:bid])
-  end
-  redirect to("/raw/#{@tex.bid}")
+post '/save' do
+  
+  @tex =
+    if Tex.get(params[:bid]) then Tex.create(:blob => params[:tex], :bid => create_id)
+    else Tex.create(:blob => params[:tex], :bid => params[:bid])
+    end
+  redirect to("/#{@tex.bid}")
 end
 
 
