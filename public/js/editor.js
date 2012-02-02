@@ -2,7 +2,7 @@ $('window').resize(function(){
   // resize_elements()
 })
     
-$('input[type="submit"]').live('click', function(){
+$('a#save').live('click', function(){
   var tex = get_tex();
   $('input[name="tex"]').val(tex)
   $('form').submit();
@@ -29,11 +29,4 @@ function render_tex() {
   $('#output').html(tex)
   var math = document.getElementById("output");
   MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
-}
-
-function resize_elements(){
-  var height = $(window).height() - 15 -30
-  var width = $(window).width()/2-1
-  $('#output').css('height', height)
-  $('table td').css('width', width)
 }
