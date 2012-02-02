@@ -11,6 +11,10 @@ html,body, .container-fluid {height:100%; margin:0}
 
 pre#input {width:100%; height:100%; margin:0;}
 
+/*style output*/
+.row.editor {background:#f2eddc; color:#004755}
+.MathJax {color:#fa2821}
+  
 
 #menu {
   height:30px;
