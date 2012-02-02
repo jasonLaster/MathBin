@@ -1,5 +1,5 @@
 $('window').resize(function(){
-  resize_elements()
+  // resize_elements()
 })
     
 $('input[type="submit"]').live('click', function(){

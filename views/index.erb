@@ -16,6 +16,10 @@
   <script src="/js/ace/theme-solarized_dark-noconflict.js" type="text/javascript" charset="utf-8"></script>
   <script src="/js/ace/mode-latex-noconflict.js" type="text/javascript" charset="utf-8"></script>
 
+  <!-- BOOTSTRAP -->
+  <script src="/js/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="/css/bootstrap.responsive.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
   <!--  GENERAL -->
   <title>MathBin</title>
   <link rel="icon" type="image/png" href="/images/favicon.png" />
@@ -25,7 +29,7 @@
     $('body').ready(function(){
 
       var tex = <%= (@tex.nil? ? "": @tex.blob).inspect %>
-      resize_elements();
+      // resize_elements();
 
       // ACE SETTINGS
       window.editor = ace.edit("input");
@@ -54,44 +58,50 @@
 
   </script>
 </head>
-<body>
-  <div id="menu">
-    <div class="wrapper">
-      <div id="flag">
-        <h1>MathBin</h1>
-      </div>
-      <div class="arrow-right"></div>
 
-      <div class="buttons">
-        <a class="info" href="/about">About</a>&nbsp;
-        <a class="info" href="/examples">Examples</a>&nbsp;
-        <a href="/">New</a> &nbsp;
-        <% unless @tex.nil? %>
-        <a href="/tex/<%= @tex.bid %>">Tex</a>&nbsp;
-        <% end %>
-        <a id="embed" href="#">Embed</a> &nbsp;
-        <div id="embed-popup"><div class="script_tag">
-          &lt;script src=&quot;<%= @embed_url %>&quot;&gt;&lt;/script&gt; </div>
+
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div id="menu">
+          <div class="wrapper">
+            <div id="flag">
+              <h1>MathBin</h1>
+            </div>
+            <div class="arrow-right"></div>
+
+            <div class="buttons">
+              <a class="info" href="/about">About</a>&nbsp;
+              <a class="info" href="/examples">Examples</a>&nbsp;
+              <a href="/">New</a> &nbsp;
+              <% unless @tex.nil? %>
+              <a href="/tex/<%= @tex.bid %>">Tex</a>&nbsp;
+              <% end %>
+              <a id="embed" href="#">Embed</a> &nbsp;
+              <div id="embed-popup"><div class="script_tag">
+                &lt;script src=&quot;<%= @embed_url %>&quot;&gt;&lt;/script&gt; </div>
+              </div>
+              <form name="input" action="save" method="post">
+                <input name="tex" type="hidden" value=""/>
+                <input name="bid" type="hidden" value="<%= @bid %>"/>
+                <!-- <input type="submit" value="Save" /> -->
+              </form>
+            </div>
+          </div>
         </div>
-        <form name="input" action="save" method="post">
-          <input name="tex" type="hidden" value=""/>
-          <input name="bid" type="hidden" value="<%= @bid %>"/>
-          <input type="submit" value="Save" />
-        </form>
+
+      </div>
+    </div>
+    <div class="row editor">
+      <div class="span6" style="height:100%; position:relative;">
+        <pre id="input"></pre>
+      </div>
+      <div class="span6">
+        <div id="output"></div>
       </div>
     </div>
   </div>
-  
-  <table>
-    <tr>
-      <td id="left" width="50%">        
-        <pre id="input"></pre>
-      </td>
-      <td id="right" width="50%">
-        <div id="output"></div>
-      </td>
-    </tr>
-</table>
 </body>
 </html>
 
