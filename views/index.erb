@@ -79,13 +79,13 @@
               <a href="/tex/<%= @tex.bid %>">Tex</a>&nbsp;
               <% end %>
               <a id="embed" href="#">Embed</a> &nbsp;
+              <a id="save" href="#">Save</a> &nbsp;
               <div id="embed-popup"><div class="script_tag">
                 &lt;script src=&quot;<%= @embed_url %>&quot;&gt;&lt;/script&gt; </div>
               </div>
-              <form name="input" action="save" method="post">
+              <form name="input" action="save" method="post" style="display:inline;">
                 <input name="tex" type="hidden" value=""/>
                 <input name="bid" type="hidden" value="<%= @bid %>"/>
-                <!-- <input type="submit" value="Save" /> -->
               </form>
             </div>
           </div>
