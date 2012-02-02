@@ -52,7 +52,7 @@ get '/tex/:bid' do
   id = params[:bid]
   @tex = Tex.get(id)
   @url = embed_url(@tex)
-  erb :raw
+  erb :tex
 end
 
 post '/save' do
