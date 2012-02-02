@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <!-- MATHJAX -->
   <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
@@ -23,20 +25,17 @@
     $('body').ready(function(){
 
       var tex = <%= (@tex.nil? ? "": @tex.blob).inspect %>
-      window.chrome = navigator.userAgent.match(/Chrome/)
       resize_elements();
 
       // ACE SETTINGS
-      if(window.chrome) {
-        window.editor = ace.edit("input");
-        window.editor.setTheme("ace/theme/solarized_dark");
-        var JavaScriptMode = ace.require("ace/mode/latex").Mode;
-        window.ace_session = editor.getSession();
-        window.ace_session.setMode(new JavaScriptMode());
-        window.editor.setHighlightActiveLine(false);
-        window.ace_session.setUseWrapMode(true);
-        window.editor.setShowPrintMargin(false);
-      }
+      window.editor = ace.edit("input");
+      window.editor.setTheme("ace/theme/solarized_dark");
+      var JavaScriptMode = ace.require("ace/mode/latex").Mode;
+      window.ace_session = editor.getSession();
+      window.ace_session.setMode(new JavaScriptMode());
+      window.editor.setHighlightActiveLine(false);
+      window.ace_session.setUseWrapMode(true);
+      window.editor.setShowPrintMargin(false);
       set_tex(tex)
       render_tex();
     })

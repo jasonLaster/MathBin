@@ -17,15 +17,11 @@ $(document).live('keyup', function(){
 })
 
 function get_tex(){
-  return window.chrome ? window.editor.getSession().getValue() : $('#input').text()
+  return window.editor.getSession().getValue()
 }
 
 function set_tex(tex) {
-  if(window.chrome) {
-    window.ace_session.setValue(tex);
-  } else {
-    $('#input').text(tex)
-  }
+  window.ace_session.setValue(tex);
 }
 
 function render_tex() {
