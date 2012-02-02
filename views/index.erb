@@ -27,7 +27,7 @@
   <script src="/js/editor.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
     $('body').ready(function(){
-
+      resize_editor()
       var tex = <%= (@tex.nil? ? "": @tex.blob).inspect %>
       // resize_elements();
 
@@ -94,7 +94,7 @@
       </div>
     </div>
     
-    <div class="row editor">
+    <div class="row-fluid editor">
       <div class="span6">
         <div style="position:relative; height:100%">
           <pre id="input"></pre>

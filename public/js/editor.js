@@ -30,3 +30,9 @@ function render_tex() {
   var math = document.getElementById("output");
   MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
 }
+
+function resize_editor(){
+  var menu_height = $('.row-fluid').first().height()
+  var editor_height = $('.row-fluid.editor').height()
+  $('.row-fluid.editor').height(editor_height - menu_height)
+}

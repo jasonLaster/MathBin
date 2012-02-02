@@ -12,8 +12,13 @@ html,body, .container-fluid {height:100%; margin:0}
 pre#input {width:100%; height:100%; margin:0;}
 
 /*style output*/
-.row.editor {background:#f2eddc; color:#004755}
-.MathJax {color:#fa2821}
+.row-fluid.editor {background:#073642; color:#93a1a1}
+.MathJax {color:#b58900}
+.row-fluid.editor.light {background:#f2eddc; color:#004755}
+.MathJax.light {color:#fa2821}
+#output {font-size:20px;margin:10px;}
+.row-fluid.editor .span6:nth-child(1) { border-right:2px solid #0e3742;}
+
   
 
 #menu {
@@ -26,7 +31,6 @@ pre#input {width:100%; height:100%; margin:0;}
 
 
  #reload:hover {cursor:pointer}
- #output {padding-top:15px}
 
 
 h1 {
