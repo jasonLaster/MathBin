@@ -49,8 +49,10 @@ var global = (function() {
     return this;
 })();
 
-if (typeof requirejs !== "undefined")
-    return;
+if (typeof requirejs !== "undefined") {
+  console.log('fuck')
+    return;  
+}
 
 var _define = function(module, deps, payload) {
     if (typeof module !== 'string') {
@@ -12278,10 +12280,12 @@ var VirtualRenderer = function(container, theme) {
         var canvasPos = this.scroller.getBoundingClientRect();
 
         var col = Math.round(
-            (pageX + this.scrollLeft - canvasPos.left - this.$padding - dom.getPageScrollLeft()) / this.characterWidth
+            (pageX + this.scrollLeft - canvasPos.left - this.$padding - dom.getPageScrollLeft())
+            / this.characterWidth
         );
         var row = Math.floor(
-            (pageY + this.scrollTop - canvasPos.top - dom.getPageScrollTop()) / this.lineHeight
+            (pageY + this.scrollTop - canvasPos.top - dom.getPageScrollTop())
+            / this.lineHeight
         );
 
         return this.session.screenToDocumentPosition(row, Math.max(col, 0));
