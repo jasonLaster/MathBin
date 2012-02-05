@@ -34,7 +34,7 @@ end
 
 get '/:bid' do
   @bid = params[:bid]
-  @tex = Tex.get(@bid)
+  @tex = Tex.get(@bid) || Tex.new(:bid => @bid, :blob => "<!-- Write Here -->")
   @embed_url = embed_url(@tex || @bid) 
   erb :index
 end
