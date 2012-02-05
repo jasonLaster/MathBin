@@ -26,6 +26,9 @@ DataMapper.auto_upgrade!
 
 
 #  ROUTES: (/, /:bid, /embed/:bid, /raw/:bid)
+get '/examples' do
+  erb :examples
+end
 
 get '/' do
   bid = create_id

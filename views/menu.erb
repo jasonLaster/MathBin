@@ -1,0 +1,32 @@
+
+<div class="row-fluid">
+  <div class="span12">
+    <div id="menu">
+      <div class="wrapper">
+        <div id="flag">
+          <h1>MathBins</h1>
+        </div>
+        <div class="arrow-right"></div>
+
+        <div class="buttons">
+          <a class="info" href="/about.html">About</a>&nbsp;
+          <a class="info" href="/examples.html">Examples</a>&nbsp;
+          <a href="/">New</a> &nbsp;
+          <% unless @tex.nil? %>
+          <a href="/tex/<%= @tex.bid %>">Tex</a>&nbsp;
+          <% end %>
+          <a id="embed" href="#">Embed</a> &nbsp;
+          <a id="save" href="#">Save</a> &nbsp;
+          <div id="embed-popup"><div class="script_tag">
+            &lt;script src=&quot;<%= @embed_url %>&quot;&gt;&lt;/script&gt; </div>
+          </div>
+          <form name="input" action="save" method="post" style="display:inline;">
+            <input name="tex" type="hidden" value=""/>
+            <input name="bid" type="hidden" value="<%= @bid %>"/>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

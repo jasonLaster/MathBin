@@ -1,0 +1,77 @@
+<html>
+<head>
+
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+  <!-- BOOTSTRAP -->
+  <script src="/js/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="/css/bootstrap.responsive.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  
+  <!-- GENERAL -->
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="stylesheet" href="/css/editor.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  
+  <style type="text/css" media="screen">
+    .docs {background-color:#fdf6e3}
+    .span3 {
+      background-color:#073642;
+      height:100%;
+    }
+    .span9 {
+      height:100%; padding-top:30px;
+    }
+    
+    .example {max-width:600px;margin-top:40px}
+    
+    .example .description {margin-bottom:10px; color:#657b83}
+    .example span.latex {color:#073642;}
+    .example h3 {border-bottom:1px solid #93a1a1; margin-bottom:10px; color: #B58900; font-size:28px; font-weight:normal; font-family:'HelveticaNeue-Light', 'Helvetica' }
+    
+    .example .mathBin {background-color:#eee8d5;}
+    .example .mathBinTex {border:none; color: #dc322f}
+    .example .mathBinCredit {border:none; background:#e8e2cf  }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    $.ready(function(){
+      
+    })
+    
+    
+  </script>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <%= erb(:menu) %>
+  
+    <div class="row-fluid docs">
+      <div class="span3">
+      </div><!--/span-->
+      <div class="span9">
+        <div class="example">
+          <h3>Simple Equation</h3>
+          <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut. 
+            <span class="latex"> E=mc^2</span></div>
+            <script src="http://localhost:4555/embed/SAJQes1"></script>
+        </div>
+        <div class="example">
+          <h3>Simple Equation</h3>
+          <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut. 
+            <span class="latex"> E=mc^2</span></div>
+            <script src="http://localhost:4555/embed/SAJQes1"></script>
+        </div>
+        <div class="example">
+          <h3>Simple Equation</h3>
+          <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut. 
+            <span class="latex"> E=mc^2</span></div>
+            <script src="http://localhost:4555/embed/SAJQes1"></script>
+        </div>
+        
+      </div>
+  </div><!--/.fluid-container-->
+
+</body>
+</html>
