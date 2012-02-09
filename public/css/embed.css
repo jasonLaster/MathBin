@@ -1,22 +1,2 @@
-.MathBin {
-  background:transparent;
-}
-.MathBinTex {
-  padding:20px;
-  border:1px solid #ddd;
-}
-
-.MathBinCredit {
-  background:#eee;
-  padding:7px 15px;
-  font-family:'Lucida Grande',Arial, Helvetica, sans-serif;
-  font-size:0.7em;
-  color:#666;
-  border:1px solid #ccc;
-  border-top:0;
-}
-
-.MathBinCredit a
-{
-  color:#369;
-}
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+.MathBin{background:transparent}.MathBin a{color:#369}.MathBin .MathBinTex{padding:20px;border:1px solid #ddd}.MathBin .MathBinCredit{background:#eee;padding:7px 15px;font-family:'Lucida Grande',Arial,Helvetica,sans-serif;font-size:.7em;color:#666;border:1px solid #ccc;border-top:0}
