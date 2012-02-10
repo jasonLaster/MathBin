@@ -37,7 +37,7 @@ end
 
 get '/:bid' do
   @bid = params[:bid]
-  @tex = Tex.get(@bid) || Tex.new(:bid => @bid, :blob => "<!-- Write Here -->")
+  @tex = Tex.get(@bid) || Tex.new(:bid => @bid, :blob => cool_eq)
   @embed_url = embed_url(@tex || @bid) 
   erb :index
 end
@@ -73,6 +73,14 @@ helpers do
     development? ? "http://localhost:4555" : "http://mathbin.heroku.com"
   end
 end
+
+def cool_eq 
+  write_here = "<!-- Write Here -->"
+  eqs = %w{$-1=e^{i\pi}$  $e=\lim_{n\rightarrow \infty}{(1+\frac{1}{n})^n}$  $\pi=\frac{c}{d}$ $\frac{d}{dx}e^x=e^x$ $a^2+b^2=c^2$ $\frac{d}{dx}\int_a^x{f(s)ds}=f(x)$ $f(x)=\sum_{i=0}^\infty{\frac{f^{(i)}(0)}{i!}x^i}$}
+  eq = eqs[rand(eqs.length)]
+  write_here + "\n"+ eq
+end
+
 
 def embed_url(e)
   domain = development? ? "http://localhost:4555" : "http://mathbins.com"
