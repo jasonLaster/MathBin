@@ -75,7 +75,7 @@ helpers do
 end
 
 def embed_url(e)
-  domain = development? ? "http://localhost:4555" : "http://mathbin.heroku.com"
+  domain = development? ? "http://localhost:4555" : "http://mathbins.com"
     
   if e.nil? then ""
   elsif e.respond_to?(:bid) then "#{domain}/embed/#{e.bid}"

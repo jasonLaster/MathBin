@@ -7,39 +7,28 @@
 
   <!-- BOOTSTRAP -->
   <script src="/js/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-
   <link rel="stylesheet" href="/css/bootstrap.responsive.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  
   
   <!-- GENERAL -->
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <link rel="stylesheet" href="/css/editor.css" type="text/css" media="screen" title="no title" charset="utf-8">
-  
-  <style type="text/css" media="screen">
-    .docs {background-color:#fdf6e3}
-    .span3 {background-color:#073642; height:100%;}
-    .span9 {height:100%; padding-top:30px;}
-    
-    ul.nav {list-style:none; font-size:15px; font-family:'helvetica'}
-    li.header {color:#268bd2; margin-top:10px}
-    li.link {margin-left: 10px; margin-top:3px; color:#93a1a1}
-    
-    .example {max-width:600px;margin-top:40px}
-    
-    .example .description {margin-bottom:10px; color:#657b83}
-    .example span.latex {color:#073642;}
-    .example h3 {border-bottom:1px solid #93a1a1; margin-bottom:10px; color: #B58900; font-size:28px; font-weight:normal; font-family:'HelveticaNeue-Light', 'Helvetica' }
-    
-    .example .mathBin {background-color:#eee8d5;}
-    .example .mathBinTex {border:none; color: #dc322f}
-    .example .mathBinCredit {border:none; background:#e8e2cf  }
-  </style>
+  <link rel="stylesheet" href="/css/examples.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
   <script type="text/javascript" charset="utf-8">
-    $.ready(function(){
-      
+
+    $('body').ready(function(){
+      var menu_height = $('.row-fluid').first().height()
+      var editor_height = $('.docs').height();
+      $('.span3').css('height', editor_height - menu_height);
+      $('.span9').css('height', editor_height - menu_height);
+      $('.docs').css('height', editor_height - menu_height);
     })
-    
-    
   </script>
+
 </head>
 <body>
 
@@ -49,40 +38,77 @@
     <div class="row-fluid docs">
       <div class="span3">
         <ul class="nav">
-          <li class="header">Simple Examples</li>
-          <li class="link">Simple</li>
-          <li class="link">Fraction</li>
-          <li class="link">Exponents</li>
-          <li class="link">Symbols</li>
-          <li class="link">Operations</li>
-          <li class="header">Advanced Examples</li>
-          <li class="link">Tables</li>
-          <li class="link">Piece-Wise</li>
-          <li class="link">Formatting</li>
-          <li class="link">HTML</li>
-          <li class="header">About</li>
+          <li class="header">Simple Examples</a></li>
+          <li class="link active"><a href="#simple">Simple</a></li>
+          <li class="link"><a href="#fraction">Fraction</a></li>
+          <li class="link"><a href="#exponent">Exponents</a></li>
+          <li class="link"><a href="#symbol">Symbols</a></li>
+          <li class="link"><a href="#operator">Operators</a></li>
+          <li class="header">MathBin</li>
+          <li class="link"><a href="#about">MathBins</a></li>
+          <li class="link"><a href="#thanks">Thanks</a></li>
+          <li class="link"><a href="#author">Author</a></li>
         </ul>
       </div><!--/span-->
       <div class="span9">
         <div class="example">
+          <a name="simple"></a>
           <h3>Simple Equation</h3>
-          <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut. 
-            <span class="latex"> E=mc^2</span></div>
-            <script src="http://localhost:4555/embed/SAJQes1"></script>
+          <div class="description">
+            Mathbins finds everything finds everything everything in between dollar signs and transforms it into a wonderful math equation. It's like a really powerful search and replace.
+           <br /><span class="latex">e.g. MathBins is as easy as <span>$</span>2+2+4<span>$</span></span>
+          </div> 
+          <script src="http://mathbin.heroku.com/embed/RSo2WSC"></script>
         </div>
         <div class="example">
-          <h3>Simple Equation</h3>
-          <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut. 
-            <span class="latex"> E=mc^2</span></div>
-            <script src="http://localhost:4555/embed/SAJQes1"></script>
+          <a name="fraction"></a>
+          <h3>Fractions</h3>
+          <div class="description">
+            To include a fraction, write \frac{}{} and type the numerator in the first curly bracket group and the denominator in the second.
+            <br /><span class="latex">e.g.  <span>$</span>\pi=\frac{c}{d}<span>$</span></span>
+            <script src="http://mathbins.com/embed/PtIqcb6"></script>
+          </div>
         </div>
         <div class="example">
-          <h3>Simple Equation</h3>
-          <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut. 
-            <span class="latex"> E=mc^2</span></div>
-            <script src="http://localhost:4555/embed/SAJQes1"></script>
+          <a name="exponent"></a>
+          <h3>Exponents</h3>
+          <div class="description">
+            To include an exponent, write ^{} and type the exponent in the curly bracket group. 
+            <br /><span class="latex">e.g.  Pythagorean Theorem &nbsp; <span>$</span>a^2 + b^2 = c^2<span>$</span></span>
+          </div>
+          <script src="http://mathbin.heroku.com/embed/Oqnvcs3"></script>
         </div>
-        
+        <div class="example">
+          <a name="symbol"></a>
+          <h3>Symbols</h3>
+          <div class="description">
+            <span class="latex"><span>$</span>[\pi,\; \alpha,\; \beta, \; \chi, \; \gamma] <span>$</span></span>
+          </div>
+            <script src="http://mathbin.heroku.com/embed/GGokfiI"></script>
+        </div>
+        <div  class="example">
+          <a name="operator"></a>
+          <h3>Operators</h3>
+          <div class="description">
+            <span class="latex"><span>$</span>\lim_{x\rightarrow \infty} \quad \int_{x}^{\infty}x^2  \quad \sum_{i=0}^{n} r^i<span>$</span></span>
+          </div>
+            <script src="http://mathbin.heroku.com/embed/YQ3LEHt"></script>
+        </div>
+
+        <div class="about">
+          <a name="about"></a>
+          <h3>About MathBins</h3>
+          <h4>Math Bins</h4>
+          <p>MathBins is a simple math editing environment. Write equations, save them, and share them with the world. I hope that MathBins will encourage more people to write about math.</p>
+          <a name="thanks"></a>
+          <h4>Thanks</h4>
+          <p>MathBins would not be possible if there wasn&rsquo;t some awesome open source technology freely available. MathBins is grateful to the wonderful people at mozilla for the Ace editor http://ace.ajax.org/. All of the math equations are automatically converted to mathematical awesomeness by MathJax http://www.mathjax.org/. And ofcourse, all of the math written on MathBins is written in the language of latex. Donald Knuth, you rock!</p>
+          <a name="author"></a>
+          <h4>Author</h4>
+          <p>MathBins was written by, and in part, for Jason Laster. Jason is a senior at Dartmouth College. He&rsquo;ll be graduating this june and would love to work on making math more available and accessible to the masses!</p>
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
       </div>
   </div><!--/.fluid-container-->
 

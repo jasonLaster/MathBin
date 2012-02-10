@@ -1,0 +1,54 @@
+.docs {background-color:#fdf6e3}
+
+html, body {overflow:none; height:100%}
+
+.docs {
+  overflow:none;
+  
+  .span3 {
+    background-color:#073642; height:100%;
+    ul {
+      &.nav {list-style:none; font-size:15px; font-family:'helvetica'}  
+      li {
+        &.header {color:#268bd2; margin-top:10px}
+        &.link {
+          margin-left: 10px; margin-top:3px;
+           &.active{color:#b58900;}
+          a {
+            color:#93a1a1; text-decoration:none; 
+            &:hover{text-decoration:underline;}
+            &:visited{color:#93a1a1;}
+          }
+        }
+      }
+    }  
+  }
+
+  .span9 {
+    height:100%; overflow-y:scroll;overflow-x:hidden;
+    h3 {
+      border-bottom:1px solid #93a1a1; margin-bottom:10px; 
+      color: #B58900; font-size:28px; font-weight:normal; font-family:'HelveticaNeue-Light', 'Helvetica' 
+    }
+    
+    .about {
+      h4 {color:#2aa198; font-size:26px; font-family:'helvetica'; margin-bottom:10px; font-family:'HelveticaNeue-Light', 'helvetica'; font-weight:300;}
+      color: #657b83; 
+      font-size:15px; 
+      p {margin-top:10px; font-family:'helvetica'; width:600px; line-height:20px;}
+    }
+
+    .example {
+      max-width:600px; margin-top:40px;
+      .description {
+        margin-bottom:10px; color:#586e75;
+        span.latex {color:#073642;}      
+      }
+      .mathBin {
+        background-color:#eee8d5; margin-top:10px;
+        .mathBinTex {border:none;}
+        .mathBinCredit {border:none; background:#e8e2cf  }
+      }
+    }
+  }  
+}
