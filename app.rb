@@ -76,7 +76,7 @@ end
 
 def cool_eq 
   write_here = "<!-- Write Here -->"
-  eqs = %w{$-1=e^{i\pi}$  $e=\lim_{n\rightarrow \infty}{(1+\frac{1}{n})^n}$  $\pi=\frac{c}{d}$ $\frac{d}{dx}e^x=e^x$ $a^2+b^2=c^2$ $\frac{d}{dx}\int_a^x{f(s)ds}=f(x)$ $f(x)=\sum_{i=0}^\infty{\frac{f^{(i)}(0)}{i!}x^i}$}
+  eqs = File.open("public/eqs.txt","r").read.split("\n")
   eq = eqs[rand(eqs.length)]
   write_here + "\n"+ eq
 end
